@@ -11,6 +11,8 @@
     />
     <link rel="stylesheet" href="assets/css/animate.css" />
     <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@400;600&family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+
     <title>Pizza</title>
   </head>
   <body>
@@ -86,6 +88,10 @@
           </div>
         </div>
       </header>
+        <!-- === Фоновое видео === -->
+        <div class="video-background">
+          <video id="bgVideo" autoplay muted loop playsinline></video>
+        </div>
 
       <!-- End header -->
 
@@ -1224,7 +1230,15 @@
           </div>
         </div>
       </section>
-
+<div class="color-switcher">
+    <p>🎨 Choose Theme:</p>
+    <div class="color-buttons">
+      <button data-theme="auto" class="color-btn auto">A</button>
+      <button data-theme="morning" class="color-btn morning"></button>
+      <button data-theme="evening" class="color-btn evening"></button>
+      <button data-theme="night" class="color-btn night"></button>
+    </div>
+  </div>
       <!-- email section  -->
       <section class="email-subscription position-relative" id="contact">
         <div class="container">
@@ -1350,15 +1364,7 @@
           </div>
         </div>
       </div>
-       <div class="color-switcher">
-    <p>🎨 Выбери тему:</p>
-    <div class="color-buttons">
-      <button data-theme="auto" class="color-btn auto">A</button>
-      <button data-theme="morning" class="color-btn morning"></button>
-      <button data-theme="evening" class="color-btn evening"></button>
-      <button data-theme="night" class="color-btn night"></button>
-    </div>
-  </div>
+       
     </footer>
 
     <script src="assets/js/jquery.js"></script>

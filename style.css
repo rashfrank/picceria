@@ -81,13 +81,37 @@ span{
 /* header css starts  */
 
 .header{
-    padding: 30px 0;
-    width: 100%;
-    background-color: #fff;
-    position: absolute;
-    z-index: 99;
-    transition: all 0.4s ease-in-out;
+   position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3); /* прозрачный фон */
+  backdrop-filter: blur(6px);     /* лёгкое размытие — красиво на видео */
+  color: #fff;
+  z-index: 10;
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.3s ease;
 }
+header.scrolled {
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+}
+
+header.scrolled img,
+header.scrolled svg {
+  filter: none; /* возвращаем оригинальный цвет */
+}
+
+
+header img,
+header svg {
+  filter: brightness(0) invert(1); /* делает иконку белой */
+  transition: filter 0.3s ease;
+}
+
 
 .sticky{
     position: fixed;
@@ -1861,5 +1885,83 @@ body.night {
   .color-btn {
     width: 22px;
     height: 22px;
+  }
+}
+
+/* === Стили текста для разных времён суток === */
+
+/* 🌅 Утро — лёгкий, свежий стиль */
+body.morning {
+  font-family: 'Poppins', sans-serif;
+  color: #3a2f27;
+  letter-spacing: 0.3px;
+}
+body.morning h1, 
+body.morning h2, 
+body.morning h3 {
+  color: #4a3f36;
+  font-weight: 600;
+}
+
+/* 🌇 Вечер — тёплый, уютный стиль */
+body.evening {
+  font-family: 'Raleway', sans-serif;
+  color: #fff0e5;
+  letter-spacing: 0.5px;
+}
+body.evening h1, 
+body.evening h2, 
+body.evening h3 {
+  color: #ffe3d6;
+  font-weight: 500;
+}
+
+/* 🌙 Ночь — контрастный, “неоновый” стиль */
+body.night {
+  font-family: 'Orbitron', sans-serif;
+  color: #c9d6ff;
+  letter-spacing: 1px;
+  text-shadow: 0 0 5px rgba(255,255,255,0.2);
+}
+body.night h1, 
+body.night h2, 
+body.night h3 {
+  color: #ffffff;
+  text-shadow: 0 0 8px rgba(255,255,255,0.4);
+  font-weight: 700;
+}
+
+/* === Фоновое видео === */
+.video-background {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* высота экрана */
+  overflow: hidden;
+  z-index: -1; /* чтобы было за всем остальным */
+}
+
+.video-background video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  filter: brightness(0.8);
+}
+
+/* Чтобы контент поверх видео читался */
+header, main, footer {
+  position: relative;
+  z-index: 10;
+}
+
+/* === Адаптивность === */
+@media (max-width: 768px) {
+  .video-background {
+    height: 60vh;
   }
 }

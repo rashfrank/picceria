@@ -179,3 +179,70 @@ document.addEventListener("DOMContentLoaded", () => {
 
   loadTheme();
 });
+
+
+// === Фоновое видео по теме ===
+function setVideoByTheme(theme) {
+  const video = document.getElementById("bgVideo");
+  if (!video) return;
+
+  let src = "";
+
+  switch (theme) {
+    case "morning":
+      src = "assets/videos/morning.mp4"; // утро
+      break;
+    case "evening":
+      src = "assets/videos/evening.mp4"; // вечер
+      break;
+    case "night":
+      src = "assets/videos/night.mp4"; // ночь
+      break;
+    case "auto":
+      const hour = new Date().getHours();
+      if (hour >= 6 && hour < 12) {
+        src = "assets/videos/morning.mp4"; // утро
+      } else if (hour >= 12 && hour < 20) {
+        src = "assets/videos/evening.mp4"; // вечер
+      } else {
+        src = "assets/videos/night.mp4"; // ночь
+      }
+      break;
+  }
+
+  // Проверяем, чтобы не перезагружать то же самое видео
+  if (src && video.getAttribute("src") !== src) {
+    video.src = src;
+    video.load();
+    video.play();
+  }
+}
+
+// === Применение темы ===
+function applyTheme(theme) {
+  localStorage.setItem("selectedTheme", theme);
+  document.body.classList.remove("morning", "evening", "night");
+
+  if (theme === "auto") {
+    setBackgroundByTime(); // функция для авто-определения фона
+    setVideoByTheme("auto");
+  } else {
+    document.body.classList.add(theme);
+    setVideoByTheme(theme);
+  }
+}
+
+// === Автозагрузка видео при старте ===
+window.addEventListener("DOMContentLoaded", () => {
+  const savedTheme = localStorage.getItem("selectedTheme") || "auto";
+  applyTheme(savedTheme);
+});
+
+window.addEventListener("scroll", () => {
+  const header = document.querySelector("header");
+  if (window.scrollY > 50) {
+    header.classList.add("scrolled");
+  } else {
+    header.classList.remove("scrolled");
+  }
+});
