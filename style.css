@@ -181,9 +181,14 @@ header svg {
 }
 
 .navbar-nav li a{
-    color: #000 !important;
+    color: #fff !important;
 }
 
+.header.scrolled a,
+.header.scrolled .nav-link,
+.header.scrolled .header-search i {
+  color: #000 !important;
+}
 .header-search i{
     color: #ee4540;
     font-size: 18px;
